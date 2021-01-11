@@ -33,7 +33,7 @@ public class Wait {
 		Thread.sleep(2000L);
 		driver.quit();
 				
-//commit test
+
 	}
 	
 }
