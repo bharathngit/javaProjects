@@ -1,0 +1,76 @@
+package com.mobileinvest.tests;
+
+import io.appium.java_client.android.AndroidDriver;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import com.mobileinvest.utilities.InitiateApplication;
+import com.mobileinvest.utilities.TakeScreenPrint;
+
+public class NiftyITPage {
+	InitiateApplication st=new InitiateApplication();
+	TakeScreenPrint ts=new TakeScreenPrint();
+	IndexWatchPage iwp=new IndexWatchPage(); 
+
+	@BeforeTest
+	public void initializeApp() throws Exception{
+			iwp.initializeApp(); //Initializing and navigating to Index Watch Page by Re-using function from Index Watch Page class
+				}
+	@SuppressWarnings("static-access")
+	@Test
+	public void Open_NiftyITPage() throws Throwable{
+		System.out.println("Starting Nifty IT test");
+			st.driver.swipe(500, 1400, 500, 200, 1000); //Swiping down to make Nifty IT visible
+			st.driver.findElement(By.name("Nifty IT")).click();
+			System.out.println("Found and clicked Nitfy IT");
+			 Thread.sleep(2000);
+			ts.TakeScreenSuccess();
+	}
+	
+	@SuppressWarnings("static-access")
+	@Test(dependsOnMethods="Open_NiftyITPage")
+	public void Select_CandleStick_Chart() throws Throwable{
+		System.out.println("Now, testing Chart Dropdown/Spinner..");
+		//Finding the Spinner(Dropdown) element..
+				st.driver.findElement(By.xpath("//android.widget.Spinner[contains(@resource-id,'chartTypeFromModal')]")).click();
+				System.out.println("Found the Chart Spinner(Dropdown)!");
+								
+				//Selecting Candlestick from Spinner(Dropdown)
+				 st.driver.findElement(By.name("Candlestick Chart")).click();
+				 System.out.println("Selected Candlestick Chart successfully!");
+				 Thread.sleep(2000);
+				 ts.TakeScreenSuccess();
+	}
+	/*
+	@SuppressWarnings("static-access")
+	@Test(dependsOnMethods="Select_CandleStick_Chart")
+	public void () throws Exception{
+		
+		WebDriverWait wait=new WebDriverWait(st.driver,10);
+		//st.driver.findElement(By.xpath("//android.widget.Button[@content-desc='?']")).click();
+		WebElement plus=st.driver.findElement(By.name("?"));
+		wait.until(ExpectedConditions.visibilityOf(plus));
+		
+		plus.click();
+		System.out.println("Clicking on the '+' button to bring up the LTP text box.. ");
+		
+		//Validating whether LTP Text Box is displayed..
+		Boolean ltp=st.driver.findElement(By.xpath("//android.view.View[contains(@content-desc,'LTP')]and @index='9'")).isDisplayed();
+		Assert.assertTrue(ltp, "LTP Text box has not been displayed yet..");
+		System.out.println("LTP Text box has been displayed.");
+		
+		Thread.sleep(10000L);
+	}*/
+	@AfterTest
+	public void closeApp(){
+		System.out.println("Ending session & Closing App");
+		st.Close();
+	}
+}

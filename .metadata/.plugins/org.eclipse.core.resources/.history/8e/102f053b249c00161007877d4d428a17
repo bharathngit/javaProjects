@@ -1,0 +1,44 @@
+package com.mobileinvest.tests;
+
+import io.appium.java_client.android.AndroidDriver;
+
+import org.openqa.selenium.By;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import com.mobileinvest.utilities.InitiateApplication;
+
+public class NiftyITPage {
+	InitiateApplication st=new InitiateApplication();
+	//TakeScreenshot ts=new TakeScreenshot();
+	
+	IndexWatchPage iwp=new IndexWatchPage(); 
+
+	@BeforeTest
+	public void initializeApp() throws Exception{
+			iwp.initializeApp(); //Initializing and navigating to Index Watch Page by Re-using function from Index Watch Page class
+				}
+	@SuppressWarnings("static-access")
+	@Test
+	public void OpenNiftyIT(){
+		System.out.println("inside nifty IT test");
+		try {
+			st.driver.swipe(500, 1400, 500, 200, 1000);
+			st.driver.findElement(By.name("Nifty IT")).click();
+			System.out.println("Found and clicked Nitfy IT");
+			Thread.sleep(2000L);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	@AfterTest
+	public void closeApp(){
+		System.out.println("Ending session & Closing App");
+		st.Close();
+				
+	}
+}

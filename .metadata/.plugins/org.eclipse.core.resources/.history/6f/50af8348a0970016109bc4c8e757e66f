@@ -1,0 +1,32 @@
+package com.mobileinvest.tests;
+
+import io.appium.java_client.android.AndroidDriver;
+
+import org.openqa.selenium.By;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class IndexWatch {
+	
+	StartApplication st=new StartApplication();
+	AndroidDriver dr=st.driver;
+	
+	@BeforeTest
+	public void initializeApp() throws Exception{
+			st.StartApp();
+		
+		}
+	@Test
+	public void IndexTest(){
+		System.out.println("in Index watch test");
+		dr.findElement(By.linkText("IndexWatch"));
+		System.out.println("Found Index Watch link..now clicking");
+		dr.findElement(By.linkText("IndexWatch")).click();
+	}
+	@AfterTest
+	public void closeApp(){
+		System.out.println("Ending session");
+		st.CloseApp();
+	}
+}

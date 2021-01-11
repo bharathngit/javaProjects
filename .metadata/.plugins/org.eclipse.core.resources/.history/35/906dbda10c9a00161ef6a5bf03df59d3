@@ -1,0 +1,19 @@
+package com.mobileinvest.tests;
+
+import java.io.File;
+import java.util.UUID;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+
+public class TakeScreenshot {
+	InitiateApplication st=new InitiateApplication();
+	
+	public void Screenshot(String path_screenshot) throws Exception {
+		
+		File srcFile=st.driver.getScreenshotAs(OutputType.FILE);
+	    String filename=UUID.randomUUID().toString(); 
+	    File targetFile=new File(path_screenshot + filename +".jpg");
+	    FileUtils.copyFile(srcFile,targetFile);
+	}
+}

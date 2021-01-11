@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="MobileInvest_TestSuite">
+ 
+    <listeners>
+        <listener class-name="com.mobileinvest.tests.MobileInvestHome"/>
+        <listener class-name="com.mobileinvest.tests.IndexWatchPage"/>  
+        <listener class-name="com.mobileinvest.tests.NiftyITPage"/>
+    </listeners>
+
+    <test name="HomePage_IndexWatch_Tests">
+    <classes>
+     	 <class name="com.mobileinvest.tests.MobileInvestHome"/>
+         </classes>
+ 	 </test> <!-- Mobile Invest Home Tests-->
+ 
+   <test name="IndexWatchPage_Tests">
+    <classes>
+     	<class name="com.mobileinvest.tests.IndexWatchPage"/>
+    </classes>
+  	</test> <!-- Index Watch Page Tests -->
+   
+  <test name="NiftyIT_Page_Tests">
+    <classes>
+  		<class name="com.mobileinvest.tests.NiftyITPage"/>
+    </classes>
+  </test> <!-- Nifty IT page Tests -->
+  
+      
+</suite> <!-- Suite -->

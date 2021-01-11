@@ -1,0 +1,130 @@
+package com.mobileinvest.tests;
+
+import java.io.File;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
+
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+import org.testng.internal.thread.TestNGThread;
+
+import com.mobileinvest.utilities.InitiateApplication;
+import com.mobileinvest.utilities.TakeScreenshot;
+
+public class MobileInvestHome {
+	
+	
+	InitiateApplication st=new InitiateApplication();
+	//TakeScreenshot ts=new TakeScreenshot();
+	//AndroidDriver dr=st.driver;
+
+
+	@BeforeTest
+	public void initializeApp() throws Exception{
+			st.Start();//Mobile Invest App starts up and Home page is displayed
+				}
+	//Test to Navigate to Index Watch page
+	/*@BeforeMethod(dependsOnMethods="Set4IndicesFromIndexSettings,Verify4IndicesFromIndexSettings")
+	public void NavigateToIndexPage() throws Exception{
+		System.out.println("Starting  NavigateToIndexPage test");
+		st.driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);	//Implicit wait for elements to be displayed	
+			
+			System.out.println("Found Index Watch link..now clicking");
+			//Clicking on Index Watch link
+			st.driver.findElement(By.name("IndexWatch")).click();
+			
+			
+	//TAKE SCREENSHOT! PLEASE REVISIT
+			
+			String path_screenshot="/MobileInvestDemo/Screenshots";
+			//ts.Screenshot(path_screenshot);
+			try {
+				File srcFile=st.driver.getScreenshotAs(OutputType.FILE);
+				String filename=UUID.randomUUID().toString(); 
+				File targetFile=new File(path_screenshot + filename +".jpg");
+				FileUtils.copyFile(srcFile,targetFile);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.out.println("Error capturing screen shot");
+			}
+			
+			}*/
+	
+	//This test sets up 4 indices from Index Watch Setting menu, by checking 4 check boxes and clicking Save
+	@Test
+	public void SetIndicesFromIndexSettings() throws Exception{
+		System.out.println("Starting SetIndicesFromIndexSettings test");
+		st.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);	//Implicit wait for elements to be displayed	
+		
+		//Open Settings
+		st.driver.findElement(By.xpath("//android.view.View[contains(@resource-id,'indexWatch')]/android.view.View[contains(@resource-id,'openSettings')]/android.view.View[@index='0']")).click();
+		System.out.println("navigated to Index watch settings");
+		
+				
+			//Un-selecting the SENSEX, which is selected by default
+		st.driver.findElement(By.xpath("//android.view.View[contains(@content-desc,'SENSEX')]")).click();
+		System.out.println("Unselected Sensex..");
+		
+		
+				
+			try {
+				
+				st.driver.findElementByAndroidUIAutomator("UiSelector().description(\"DHAANYA\")").click();
+				//st.driver.findElement(By.xpath("//android.view.View[contains(@content-desc,'Nifty IT')]")).click();
+				//st.driver.findElementByName("Nifty IT").click();
+				//System.out.println("selected Nifty IT");
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.out.println("Unable to find Nifty IT. "+e.getMessage());
+				e.printStackTrace();
+			}
+		
+			
+			//Scrolling down to Save button
+				st.driver.swipe(100, 1400, 100, 800, 2000);
+			
+				st.driver.swipe(100, 1400, 100, 800, 2000);
+			
+				
+		
+		//Saving the selection
+		try {
+			st.driver.findElementByAndroidUIAutomator("UiSelector().description(\"Save \")").click();
+			//st.driver.findElement(By.xpath("//android.widget.Button[contains(@content-desc,'Save')]")).click();
+			System.out.println("Saved!");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println("Couldn't find Save button. "+e.getMessage());
+			e.printStackTrace();
+			
+		}
+		
+		
+		
+	}
+	/*@BeforeMethod(dependsOnMethods="Set4IndicesFromIndexSettings")
+	public void Verify4IndicesFromIndexSettings(){
+		System.out.println("Starting Verify4IndicesFromIndexSettings test");
+		st.driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);	//Implicit wait for elements to be displayed	
+		System.out.println("inside Verify4IndicesFromIndexSettings:dependsOnMethods-Set4IndicesFromIndexSettings");
+		}*/
+	@AfterTest
+	public void closeApp(){
+		System.out.println("Ending session & Closing App");
+		st.Close();
+				
+	}
+}

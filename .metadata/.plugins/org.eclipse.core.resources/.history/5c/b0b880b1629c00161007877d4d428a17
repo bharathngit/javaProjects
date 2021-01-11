@@ -1,0 +1,64 @@
+package com.mobileinvest.utilities;
+
+import io.appium.java_client.android.AndroidDriver;
+
+import java.io.File;
+import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+public class TakeScreenPrint {
+
+	public static void main(String[] args) throws Throwable {
+		// TODO Auto-generated method stub
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+		capabilities.setCapability(CapabilityType.BROWSER_NAME, "");
+	//	capabilities.setCapability("deviceName", "HTC One_m8");
+	//	capabilities.setCapability("platformVersion", "6.0");
+		capabilities.setCapability("deviceName", "SAMSUNG-SM-N910A");
+		capabilities.setCapability("platformVersion", "5.0");
+		capabilities.setCapability("platformName", "Android");
+		capabilities.setCapability("appPackage", "com.aditybirlamoney.cueme.mobileapp");
+		capabilities.setCapability("appWaitActivity", "com.openstream.mmi.gui.CuemeActivityDelegate");
+		capabilities.setCapability("appActivity", "com.openstream.cueme.workbench.cuemelauncher.MainActivityDelegate");
+		
+		System.out.println("Now, Setting Up the values of Capabilities - Sending request to appium server");
+		
+		@SuppressWarnings("rawtypes")
+		AndroidDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+		driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+		System.out.println("Initiating Mobile Invest App is successfull on the Android Phone..");
+		
+		driver.findElement(By.xpath("//android.view.View[contains(@content-desc,'SENSEX-BSE')]"));
+		System.out.println("Waiting for Home Page to load..");
+		
+		//Thread.sleep(3000);
+		
+		System.out.println("Now, Taking screenshot");
+		File srcFile=driver.getScreenshotAs(OutputType.FILE);
+		String Uname=UUID.randomUUID().toString();
+		DateFormat df = new SimpleDateFormat("_EEE_d_MMM_yyyy_HH_mm");
+		String date = df.format(Calendar.getInstance().getTime());
+		
+		String filename=Uname+date;
+		System.out.println(filename);
+		File targetFile=new File("Screenshots/"+filename+".png");
+		FileUtils.copyFile(srcFile,targetFile);
+		System.out.println("Screenshot is being taken, under name:"+targetFile);
+
+		
+		//Thread.sleep(3000);
+		
+		driver.quit();
+}
+}

@@ -1,0 +1,15 @@
+package com.hybrid.framework.util;
+
+public class Keywords {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		GenericKeywords kw=new GenericKeywords();
+		kw.openBrowser("Mozilla");
+		kw.navigate("url");
+		kw.click("gmailLink_xpath");
+		kw.input("email_id", "email_Address");
+		kw.click("nextButton_id");
+	}
+
+}

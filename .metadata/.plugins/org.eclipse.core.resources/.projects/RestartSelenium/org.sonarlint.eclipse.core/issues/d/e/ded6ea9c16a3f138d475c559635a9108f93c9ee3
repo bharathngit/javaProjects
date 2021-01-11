@@ -1,0 +1,16 @@
+
+i	java:S106"9Replace this use of System.out or System.err by a logger.(Â»ŞÿÿÿÿÿHê.RMAJORZ
+CODE_SMELL
+Š	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¶ šİüÿÿÿÿHë.RMINORZ
+CODE_SMELL
+g	java:S125
+"<This block of commented-out lines of code should be removed.(áÔœHì.RMAJORZ
+CODE_SMELL
+
+java:S1130	"mRemove the declaration of thrown exception 'java.lang.IllegalArgumentException' which is a runtime exception.(Ñ¼×úÿÿÿÿHí.RMINORZ
+CODE_SMELL
+—
+java:S1130	"fRemove the declaration of thrown exception 'java.lang.SecurityException' which is a runtime exception.(Ñ¼×úÿÿÿÿHî.RMINORZ
+CODE_SMELL
+i	java:S106"9Replace this use of System.out or System.err by a logger.(Æì° úÿÿÿÿHï.RMAJORZ
+CODE_SMELL

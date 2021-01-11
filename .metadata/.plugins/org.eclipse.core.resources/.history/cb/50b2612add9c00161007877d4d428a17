@@ -1,0 +1,47 @@
+package com.mobileinvest.utilities;
+
+import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.UUID;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+
+public class TakeScreenPrint {
+
+	InitiateApplication st=new InitiateApplication();
+	@SuppressWarnings("static-access")
+	public void TakeScreenSuccess() throws Throwable{
+		
+		Thread.sleep(1000);
+		System.out.println("Now, Taking Success screenshot!");
+		File srcFile=st.driver.getScreenshotAs(OutputType.FILE);
+		String Uname=UUID.randomUUID().toString();
+		DateFormat df = new SimpleDateFormat("_EEE-d-MMM-yyyy-HH-mm");
+		String date = df.format(Calendar.getInstance().getTime());
+		
+		String filename=Uname+date;
+		System.out.println(filename);
+		File targetFile=new File("Screenshots/Success/"+filename+".png");
+		FileUtils.copyFile(srcFile,targetFile);
+		System.out.println("Screenshot is being taken, under name:"+targetFile);
+
+	}
+	public void TakeScreenFail() throws Throwable{
+		Thread.sleep(1000);
+		System.out.println("Now, Taking screenshot");
+		@SuppressWarnings("static-access")
+		File srcFile=st.driver.getScreenshotAs(OutputType.FILE);
+		String Uname=UUID.randomUUID().toString();
+		DateFormat df = new SimpleDateFormat("_EEE-d-MMM-yyyy-HH-mm");
+		String date = df.format(Calendar.getInstance().getTime());
+		
+		String filename=Uname+date;
+		System.out.println(filename);
+		File targetFile=new File("Screenshots/Fail/"+filename+".png");
+		FileUtils.copyFile(srcFile,targetFile);
+		System.out.println("Screenshot is being taken, under name:"+targetFile);
+
+	}
+}

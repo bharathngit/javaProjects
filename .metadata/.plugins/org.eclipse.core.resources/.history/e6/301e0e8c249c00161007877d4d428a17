@@ -1,0 +1,51 @@
+package com.mobileinvest.tests;
+
+import io.appium.java_client.android.AndroidDriver;
+
+import org.openqa.selenium.By;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import com.mobileinvest.utilities.InitiateApplication;
+
+public class NiftyITPage {
+	InitiateApplication st=new InitiateApplication();
+	//TakeScreenshot ts=new TakeScreenshot();
+	
+	IndexWatchPage iwp=new IndexWatchPage(); 
+
+	@BeforeTest
+	public void initializeApp() throws Exception{
+			iwp.initializeApp(); //Initializing and navigating to Index Watch Page by Re-using function from Index Watch Page class
+				}
+	@SuppressWarnings("static-access")
+	@Test
+	public void OpenNiftyIT(){
+		System.out.println("inside nifty IT test");
+			st.driver.swipe(500, 1400, 500, 200, 1000); //Swiping down to make Nifty IT visible
+			st.driver.findElement(By.name("Nifty IT")).click();
+			System.out.println("Found and clicked Nitfy IT");
+		
+	}
+	@SuppressWarnings("static-access")
+	@Test(dependsOnMethods="OpenNiftyIT")
+	public void TestChart(){
+		System.out.println("Now, testing Chart..");
+		//Finding the Spinner(Dropdown) element..
+				st.driver.findElement(By.xpath("//android.widget.Spinner[contains(@resource-id,'chartTypeFromModal')]")).click();
+				System.out.println("Found the Spinner(Dropdown)!");
+								
+				//Selecting Candlestick from Spinner(Dropdown)
+				 st.driver.findElement(By.name("Candlestick Chart")).click();
+				 System.out.println("Selected Candlestick Chart successfully!");
+				
+	}
+	
+	@AfterTest
+	public void closeApp(){
+		System.out.println("Ending session & Closing App");
+		st.Close();
+				
+	}
+}

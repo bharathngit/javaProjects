@@ -1,0 +1,56 @@
+package com.mobileinvest.utilities;
+
+import org.testng.ITestContext;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
+
+public class Listener implements ITestListener {
+	TakeScreenPrint ts=new TakeScreenPrint();
+	public void onFinish(ITestContext arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onStart(ITestContext arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onTestFailedButWithinSuccessPercentage(ITestResult arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onTestFailure(ITestResult result) {
+		
+		System.out.println("Unfortunately, the Test "+result+" failed.");
+		
+		try {
+			ts.TakeScreenFail();
+			
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			System.out.println("Unable to take screenshot."+e.getMessage());
+		}
+	}
+
+	public void onTestSkipped(ITestResult result) {
+		System.out.println("Test "+result+" skipped due to previous test failing or skipping.");
+	}
+
+	public void onTestStart(ITestResult arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onTestSuccess(ITestResult result) {
+		System.out.println("Test "+result+" Passed!");
+		try {
+			ts.TakeScreenSuccess();
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			System.out.println("Unable to take screenshot."+e.getMessage());
+		}
+	}
+
+}

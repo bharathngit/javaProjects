@@ -1,0 +1,42 @@
+package misc;
+
+import io.appium.java_client.android.AndroidDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+public class AppiumInspector {
+	static AndroidDriver driver;
+	public static void main(String[] args) throws Exception {
+		
+			
+											
+				DesiredCapabilities capabilities = new DesiredCapabilities();
+				capabilities.setCapability(CapabilityType.BROWSER_NAME, "");
+				capabilities.setCapability("deviceName", "SAMSUNG-SM-N910A");
+				capabilities.setCapability("platformVersion", "5.0");
+				capabilities.setCapability("platformName", "Android");
+				capabilities.setCapability("appPackage", "com.aditybirlamoney.cueme.mobileapp");
+				capabilities.setCapability("appWaitActivity", "com.openstream.mmi.gui.CuemeActivityDelegate");
+				capabilities.setCapability("appActivity", "com.openstream.cueme.workbench.cuemelauncher.MainActivityDelegate");
+				
+				System.out.println("Sending request to appium server");
+				
+				driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+				driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+		
+				System.out.println("Initiating Mobile Invest App is successfull on the Android Phone..");
+		driver.context("com.openstream.mmi.gui.CuemeActivityDelegate");
+				driver.findElementByName("IndexWatch");
+				System.out.println("Context:"+driver.getContext());
+				driver.quit();
+				System.out.println("Session ended..");
+
+	}
+	
+
+}

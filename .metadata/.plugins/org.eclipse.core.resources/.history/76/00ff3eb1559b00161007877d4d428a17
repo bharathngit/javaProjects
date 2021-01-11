@@ -1,0 +1,48 @@
+package com.mobileinvest.utilities;
+
+
+
+import io.appium.java_client.android.AndroidDriver;
+
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+public class InitiateApplication {
+
+
+		public AndroidDriver driver;
+		
+			public void Start() throws Exception {
+			
+			DesiredCapabilities capabilities = new DesiredCapabilities();
+			capabilities.setCapability(CapabilityType.BROWSER_NAME, "");
+			capabilities.setCapability("deviceName", "SAMSUNG-SM-N910A");
+			capabilities.setCapability("platformVersion", "5.0");
+			capabilities.setCapability("platformName", "Android");
+			capabilities.setCapability("appPackage", "com.aditybirlamoney.cueme.mobileapp");
+			capabilities.setCapability("appWaitActivity", "com.openstream.mmi.gui.CuemeActivityDelegate");
+			capabilities.setCapability("appActivity", "com.openstream.cueme.workbench.cuemelauncher.MainActivityDelegate");
+			
+			System.out.println("Now, Setting Up the values of Capabilities - Sending request to appium server");
+			
+			driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+			driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
+	
+			System.out.println("Initiating Mobile Invest App is successfull on the Android Phone..");
+			driver.findElement(By.xpath("//android.view.View[contains(@content-desc,'SENSEX-BSE')]"));
+			
+			System.out.println("waiting for Index watch to load..");
+			
+	}
+			public void Close(){
+				
+				driver.quit();
+				System.out.println("Session ended..");
+			}
+		
+}

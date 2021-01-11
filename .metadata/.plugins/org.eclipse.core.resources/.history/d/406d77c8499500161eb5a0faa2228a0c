@@ -1,0 +1,19 @@
+
+public class TestMain {
+
+	public void main(String[] args) {
+		
+System.out.println("inside 1st Main function");
+main(6);
+	}
+	public void main(int args) {
+		
+System.out.println("inside THE OTHER main, value sent from Main is"+args);
+ display();s
+	}
+	public void display(){
+		System.out.println("inside display");
+	}
+	
+
+}

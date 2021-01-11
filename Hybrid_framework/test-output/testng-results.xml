@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="30732" started-at="2017-01-07T10:12:17Z" finished-at="2017-01-07T10:12:47Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="30732" started-at="2017-01-07T10:12:17Z" finished-at="2017-01-07T10:12:47Z">
+      <class name="com.hybrid.framework.testcases.GmailLogin">
+        <test-method status="PASS" signature="doLogin()[pri:0, instance:com.hybrid.framework.testcases.GmailLogin@7c16905e]" name="doLogin" duration-ms="30685" started-at="2017-01-07T15:42:17Z" finished-at="2017-01-07T15:42:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- doLogin -->
+      </class> <!-- com.hybrid.framework.testcases.GmailLogin -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

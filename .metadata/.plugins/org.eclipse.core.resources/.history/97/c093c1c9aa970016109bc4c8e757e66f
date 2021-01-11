@@ -1,0 +1,64 @@
+package com.mobileinvest.tests;
+
+import java.io.File;
+import java.util.UUID;
+
+import io.appium.java_client.android.AndroidDriver;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class IndexWatch {
+	
+	StartApplication st=new StartApplication();
+	TakeScreenshot ts=new TakeScreenshot();
+	//AndroidDriver dr=st.driver;
+	
+	@BeforeTest
+	public void initializeApp() throws Exception{
+			st.Start();
+		
+		}
+	@Test
+	public void IndexTest() throws Exception{
+		System.out.println("in Index watch test");
+		
+		
+		//finding Index watch link on home page
+		//String index=st.driver.findElement(By.name("IndexWatch")).getText();
+		
+		
+			/*try {
+				System.out.println("Asserting Index watch link");
+				Assert.assertEquals(index,"IndexWatch");
+			
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.out.println("Cant find Index Watch link");
+				System.out.println(e.getMessage());
+				
+			}*/
+			
+			System.out.println("Found Index Watch link..now clicking");
+			//Clicking on Index Watch link
+			st.driver.findElement(By.name("IndexWatch")).click();
+			//take screenshot
+			
+			String path_screenshot="/MobileInvestDemo/Screenshots";
+			ts.Screenshot(path_screenshot);
+			
+		
+	}
+	@AfterTest
+	public void closeApp(){
+		System.out.println("Ending session & Closing App");
+		st.Close();
+				
+	}
+}

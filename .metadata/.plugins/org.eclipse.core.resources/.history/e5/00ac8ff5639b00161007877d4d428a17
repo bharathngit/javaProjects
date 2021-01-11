@@ -1,0 +1,31 @@
+package com.mobileinvest.tests;
+
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import com.mobileinvest.utilities.InitiateApplication;
+
+public class NiftyITPage {
+	InitiateApplication st=new InitiateApplication();
+	//TakeScreenshot ts=new TakeScreenshot();
+	
+	IndexWatchPage iwp=new IndexWatchPage(); 
+
+	@BeforeTest
+	public void initializeApp() throws Exception{
+			iwp.initializeApp(); //Initializing and navigating to Index Watch Page by calling function from Index Watch Page class
+				}
+	@Test
+	public void OpenNiftyIT(){
+		System.out.println("inside nifty IT test");
+	}
+	
+	
+	@AfterTest
+	public void closeApp(){
+		System.out.println("Ending session & Closing App");
+		st.Close();
+				
+	}
+}

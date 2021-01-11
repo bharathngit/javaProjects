@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestNGSuite">
+  <test name="GmailLogin">
+  		<classes>
+  			<class name="tests.GmailLogin"></class>		
+  		</classes>
+  </test> <!-- TestNGTest -->
+</suite> <!-- TestNGSuite -->

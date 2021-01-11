@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [MobileInvest_TestSuite]">
+  <listeners>
+    <listener class-name="com.mobileinvest.utilities.Listener"/>
+  </listeners>
+  <test name="HomePage_IndexWatch_Tests(failed)">
+    <classes>
+      <class name="com.mobileinvest.tests.MobileInvestHome">
+        <methods>
+          <include name="SetIndicesFromIndexSettings"/>
+          <include name="VerifyIndicesFromIndexSettings"/>
+          <include name="initializeApp"/>
+        </methods>
+      </class> <!-- com.mobileinvest.tests.MobileInvestHome -->
+      <class name="com.mobileinvest.tests.IndexWatchPage">
+        <methods>
+          <include name="initializeApp"/>
+        </methods>
+      </class> <!-- com.mobileinvest.tests.IndexWatchPage -->
+      <class name="com.mobileinvest.tests.NiftyITPage">
+        <methods>
+          <include name="initializeApp"/>
+        </methods>
+      </class> <!-- com.mobileinvest.tests.NiftyITPage -->
+    </classes>
+  </test> <!-- HomePage_IndexWatch_Tests(failed) -->
+  <test name="IndexWatchPage_Tests(failed)">
+    <classes>
+      <class name="com.mobileinvest.tests.MobileInvestHome">
+        <methods>
+          <include name="initializeApp"/>
+        </methods>
+      </class> <!-- com.mobileinvest.tests.MobileInvestHome -->
+      <class name="com.mobileinvest.tests.IndexWatchPage">
+        <methods>
+          <include name="SelectBSE_from_Dropdown"/>
+          <include name="Validate_BSE_IndexWatchPage"/>
+          <include name="initializeApp"/>
+        </methods>
+      </class> <!-- com.mobileinvest.tests.IndexWatchPage -->
+      <class name="com.mobileinvest.tests.NiftyITPage">
+        <methods>
+          <include name="initializeApp"/>
+        </methods>
+      </class> <!-- com.mobileinvest.tests.NiftyITPage -->
+    </classes>
+  </test> <!-- IndexWatchPage_Tests(failed) -->
+  <test name="NiftyIT_Page_Tests(failed)">
+    <classes>
+      <class name="com.mobileinvest.tests.MobileInvestHome">
+        <methods>
+          <include name="initializeApp"/>
+        </methods>
+      </class> <!-- com.mobileinvest.tests.MobileInvestHome -->
+      <class name="com.mobileinvest.tests.IndexWatchPage">
+        <methods>
+          <include name="initializeApp"/>
+        </methods>
+      </class> <!-- com.mobileinvest.tests.IndexWatchPage -->
+      <class name="com.mobileinvest.tests.NiftyITPage">
+        <methods>
+          <include name="Select_CandleStick_Chart"/>
+          <include name="initializeApp"/>
+          <include name="Open_NiftyITPage"/>
+        </methods>
+      </class> <!-- com.mobileinvest.tests.NiftyITPage -->
+    </classes>
+  </test> <!-- NiftyIT_Page_Tests(failed) -->
+</suite> <!-- Failed suite [MobileInvest_TestSuite] -->

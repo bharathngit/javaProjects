@@ -1,0 +1,10 @@
+package com.mobileinvest.utilities;
+
+public class TakeScreenPrint {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

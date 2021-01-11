@@ -1,0 +1,130 @@
+package com.mobileinvest.tests;
+
+import java.io.File;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
+
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+import org.testng.internal.thread.TestNGThread;
+
+import com.mobileinvest.utilities.InitiateApplication;
+import com.mobileinvest.utilities.TakeScreenshot;
+
+public class MobileInvestHome  {
+	
+	
+	static InitiateApplication st=new InitiateApplication();
+	//TakeScreenshot ts=new TakeScreenshot();
+	//AndroidDriver dr=st.driver;
+	
+
+	@BeforeTest
+	public void initializeApp() throws Exception{
+		System.out.println("Starting initialization..");	
+		st.Start();//Mobile Invest App starts up and Home page is displayed
+				}
+	/*TAKE SCREENSHOT! PLEASE REVISIT
+			
+			String path_screenshot="/MobileInvestDemo/Screenshots";
+			//ts.Screenshot(path_screenshot);
+			try {
+				File srcFile=st.driver.getScreenshotAs(OutputType.FILE);
+				String filename=UUID.randomUUID().toString(); 
+				File targetFile=new File(path_screenshot + filename +".jpg");
+				FileUtils.copyFile(srcFile,targetFile);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.out.println("Error capturing screen shot");
+			}
+			
+			}*/
+	
+	//This test sets up indices from Index Watch Setting menu, by checking 4 check boxes and clicking Save
+	
+	@SuppressWarnings("static-access")
+	@Test
+	public void SetIndicesFromIndexSettings() throws Exception{
+			System.out.println("Starting SetIndicesFromIndexSettings test..");
+		
+		//Open Settings
+			st.driver.findElement(By.xpath("//android.view.View[contains(@resource-id,'indexWatch')]/android.view.View[contains(@resource-id,'openSettings')]/android.view.View[@index='0']")).click();
+			System.out.println("navigated to Index watch settings");
+						
+		//Un-tick the SENSEX, which is selected by default
+			st.driver.findElement(By.xpath("//android.view.View[contains(@content-desc,'SENSEX')]")).click();
+			System.out.println("Un-ticked Sensex..");
+		
+			//Scrolling down to Save button
+			st.driver.swipe(500, 1400, 500, 200, 2000);
+			/*WebElement NiftyIT=st.driver.findElement(By.name("Nifty IT"));
+			int startx=NiftyIT.getLocation().getX();
+			int starty=NiftyIT.getLocation().getY();
+			int endy=NiftyIT.getLocation().getY()+400;
+			st.driver.swipe(startx, starty, startx, endy, 3000);
+			*/
+		
+		//Ticking Nifty IT
+			
+			Boolean niftydisplay=st.driver.findElement(By.name("Nifty IT")).isDisplayed();
+			Assert.assertTrue(niftydisplay, "Couldn't find Nifty IT");
+			st.driver.findElement(By.name("Nifty IT")).click();
+			System.out.println("Ticked Nifty IT");
+		
+			
+			
+		
+		//Saving the selection
+			//Find Save Button & Click
+		
+			
+			Boolean saveDisplay=st.driver.findElement(By.name("Save ")).isDisplayed();
+			Assert.assertTrue(saveDisplay, "Save button can't be found");
+			System.out.println("Found Save Button! Now clicking..");
+			st.driver.findElement(By.name("Save ")).click();
+			System.out.println("Saved!");
+			
+			//Finding Close button
+			try {
+				st.driver.findElementByAndroidUIAutomator("UiSelector().description(\"Close \")");
+				System.out.println("Found Close Button.");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				
+		
+	}
+	
+	@Test(dependsOnMethods="SetIndicesFromIndexSettings")
+	public void VerifyIndicesFromIndexSettings(){
+		
+			System.out.println("Starting VerifyIndicesFromIndexSettings test");
+			
+			@SuppressWarnings("static-access")
+			Boolean NiftyIT=st.driver.findElement(By.name("Nifty IT-NSE")).isDisplayed();
+			Assert.assertTrue(NiftyIT, "Nifty IT is not displayed on Home page");
+			System.out.println("Successfully verified Index - Nifty IT on Home Page");
+		
+	}
+	
+	@AfterTest
+	public void closeApp(){
+		System.out.println("Ending session & Closing App");
+		st.Close();
+				
+	}
+}

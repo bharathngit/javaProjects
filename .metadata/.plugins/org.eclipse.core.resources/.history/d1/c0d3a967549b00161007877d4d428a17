@@ -1,0 +1,56 @@
+package com.mobileinvest.tests;
+
+import org.openqa.selenium.By;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import com.mobileinvest.utilities.InitiateApplication;
+
+public class IndexWatchPage {
+	InitiateApplication st=new InitiateApplication();
+	//TakeScreenshot ts=new TakeScreenshot();
+	
+
+	@BeforeTest
+	public void initializeApp() throws Exception{
+			st.Start();//Mobile Invest App starts up and Home page is displayed
+			
+			//Navigate to Index Watch Page
+			
+			System.out.println("Now, navigating to Index watch page");
+			st.driver.findElement(By.name("IndexWatch")).click();
+			//Validate whether Index watch page has loaded
+			try {
+				System.out.println("Verifying whethere the page has loaded..");
+				st.driver.findElement(By.name("IndexWatch"));
+				System.out.println("Page has loaded");
+				//st.driver.findElement(By.xpath("//android.view.View[contains(@content-desc,'IndexWatch')]"));
+			} catch (Exception e) {
+				
+				System.out.println("Page could not be loaded.");
+				e.printStackTrace();
+			}
+				}
+	//Test to select BSE from Drop down list
+	@Test
+	public void SelectBSE(){
+		System.out.println("Selecting BSE from Drop down list.");
+		
+		try {
+			st.driver.findElement(By.xpath("//android.view.View[contains(@resource-id,'indexWatchExchange')]"));
+			System.out.println("Found the Dropdown!");
+			} catch (Exception e) {
+			System.out.println("Couldnt find the dropdown..");
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@AfterTest
+	public void closeApp(){
+		System.out.println("Ending session & Closing App");
+		st.Close();
+				
+	}
+}

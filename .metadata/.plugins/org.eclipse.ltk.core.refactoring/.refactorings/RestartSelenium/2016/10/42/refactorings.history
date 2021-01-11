@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;GmailLogin.java&apos; to &apos;TestNG_RestartSelenium/src/tests&apos;&#x0D;&#x0A;- Original project: &apos;RestartSelenium&apos;&#x0D;&#x0A;- Destination element: &apos;TestNG_RestartSelenium/src/tests&apos;&#x0D;&#x0A;- Original element: &apos;GmailLogin.java&apos;" description="Copy compilation unit" destination="=TestNG_RestartSelenium/src&lt;tests" element1="/src&lt;{GmailLogin.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1476449175567" units="1" version="1.0"/>
+</session>
